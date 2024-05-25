@@ -129,23 +129,23 @@ void setup() {
   delay(2000);
 
   MPU9250Setting setting;
-  setting.accel_fs_sel = ACCEL_FS_SEL::A4G; //set accel to 2g scale
-  setting.gyro_fs_sel = GYRO_FS_SEL::G2000DPS; //set gyro scale to 250deg/sec sens
+  setting.accel_fs_sel = ACCEL_FS_SEL::A4G; //set accel to 4g scale
+  setting.gyro_fs_sel = GYRO_FS_SEL::G2000DPS; //set gyro scale to 2k deg/sec sens
   setting.mag_output_bits = MAG_OUTPUT_BITS::M16BITS;
-  setting.fifo_sample_rate = FIFO_SAMPLE_RATE::SMPL_125HZ; //1khz sample rate
+  setting.fifo_sample_rate = FIFO_SAMPLE_RATE::SMPL_125HZ; //125hz sample rate
   setting.gyro_fchoice = 0x03;
   setting.gyro_dlpf_cfg = GYRO_DLPF_CFG::DLPF_41HZ;
   setting.accel_fchoice = 0x01;
   setting.accel_dlpf_cfg = ACCEL_DLPF_CFG::DLPF_45HZ;
 
-  if (!mpu_cali.setup(0x68)) {  // change to your own address
+  if (!mpu_cali.setup(0x68)) {  // change to device i2c address
       while (1) {
           Serial.println("Wrong IMU Bro");
           delay(3000);
       }
   }
 
-  filter.begin(10);
+  filter.begin(10); //filter frequency
 
   /*Serial.println("Accel/Gyro calibration starts in 5 seconds!");
   Serial.println("Please leave the device still on the flat plane.");
@@ -178,7 +178,7 @@ void setup() {
   // save to eeprom
   saveCalibration();
   */
-  loadCalibration();
+  loadCalibration(); //load eeprom values
   delay(500);
 }
 
