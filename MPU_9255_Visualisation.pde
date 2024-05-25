@@ -14,12 +14,12 @@ void setup() {
 void draw() {
   background(61);
 
-  pushMatrix();
+  pushMatrix(); //transformation matrix container (start)
   translate(width/2, height/2);
   rotate(-radians(angle));
   fill(0, 100, 153);
   rect(0, 0, 180, 180); 
-  popMatrix();
+  popMatrix();  //transformation matrix container (end)
   
   pushMatrix();
   translate(width/2, height/2);
