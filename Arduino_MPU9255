@@ -1,14 +1,14 @@
-#include <MPU9255.h>// include MPU9255 library
+#include <MPU9255.h>
 #include "MPU9250.h"
 #include <MadgwickAHRS.h>
 #include "eeprom_utils.h"
-#define grav 9.81 // 1g ~ 9.81 m/s^2
-#define magnetometer_cal 0.06 //magnetometer calibration
+#define grav 9.81 // 1g = 9.81 m/s^2
+#define magnetometer_cal 0.06 //magnetometer calibration val
 MPU9255 mpu;
 MPU9250 mpu_cali;
 Madgwick filter;
 unsigned long microsPerReading, microsPrevious;
-const float declination = 0.04; // Magnetic declination for Singapore in degrees (West)
+const float declination = 0.04; // Magnetic declination for Singapore in degrees (West), thanks google
 float accelScale, gyroScale;
 int aix, aiy, aiz;
 int gix, giy, giz;
